@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        width: 97vw;
+        height: 100vh;
+        background: rgb(34, 193, 195);
+        background: linear-gradient(
+          0deg,
+          rgba(34, 193, 195, 1) 0%,
+          rgba(45, 253, 76, 1) 100%
+        );
+      }
+      .container {
+        display: flex;
+        justify-content: space-between;
+      }
+      .form-container {
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .list-container {
+        display: flex;
+        flex-direction: column;
+      }
+      .btn {
+        margin: auto;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+      }
+      input {
+        width: 200px;
+        display: block;
+      }
+      label {
+        font-size: large;
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      li {
+        width: 400px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+      }
+      a {
+        width: 100px;
+        display: block;
+        text-align: center;
+        background-color: #fa5858;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        border: #f00808 1px solid;
+        transition: all 500ms ease-in-out;
+      }
+      a:hover {
+        background-color: #f00808;
+      }
+      .add {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+      }
+      .text {
+        font-size: larger;
+        font-weight: 500;
+      }
+      span {
+        font-size: 30px;
+        font-weight: 800;
+      }
+      .text-list {
+        color: red;
+        position: fixed;
+        left: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cadastro no Banco de Dados</h1>
+
+    <hr />
+    <div class="container">
+      <div class="form-container">
+        <h2>Formulário Cadastro</h2>
+        <form action="/" method="post">
+          <label for="nome">Nome:</label>
+          <input type="text" id="nome" name="nome" required /><br /><br />
+
+          <label for="idade">Idade:</label>
+          <input type="text" id="idade" name="idade" required /><br /><br />
+
+          <input class="btn" type="submit" value="Enviar" />
+        </form>
+      </div>
+      <div class="list-container">
+        <h2 class="text-list">Lista de Cadastros</h2>
+        <ul>
+          {{#info}}
+          <li>
+            <div class="text">
+              Nome: <span>{{nome}}</span> Idade: <span>{{idade}}</span>
+            </div>
+            <div class="add">
+              <a href="/addAge/{{id}}"> + um ano </a>
+              <a href="/removeAge/{{id}}"> - um ano </a>
+            </div>
+            <div class="add">
+              <a href="/seleciona/{{nome}}/{{idade}}">Selecionar</a>
+              <a href="/remove/{{id}}">Remover</a>
+            </div>
+          </li>
+          {{/info}}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

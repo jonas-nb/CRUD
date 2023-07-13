@@ -1,0 +1,17 @@
+        <ul>
+          {{#info}}
+          <li>
+            <div class="text">
+              Nome: <span>{{nome}}</span> Idade: <span>{{idade}}</span>
+            </div>
+            <div class="add">
+              <a href="/remove/:{{id}}"> + um ano </a>
+              <a href="/add/:{{id}}"> - um ano </a>
+            </div>
+            <div class="add">
+              <a href="/:{{nome}}/:{{id}}">Selecionar</a>
+              <a href="#">Remover</a>
+            </div>
+          </li>
+          {{/info}}
+        </ul>
