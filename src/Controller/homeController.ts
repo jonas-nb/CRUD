@@ -1,84 +1,94 @@
 import { Request, Response } from "express";
 import { alunoInfo } from "../Models/Alunos";
 
+// Renderiza a página inicial
 export const homePageRender = async (req: Request, res: Response) => {
-  //sempre atualiza a page
+  // Obtém a lista de informações dos alunos
   const infoList = await alunoInfo.findAll({
     order: [["id", "ASC"]],
   });
   res.render("home", { info: infoList });
 };
 
+// Envia os dados do formulário
 export const enviaDados = async (req: Request, res: Response) => {
   const nome = req.body.nome;
   const idade = req.body.idade;
+
+  // Cria uma nova entrada de informações do aluno
   const addInfo = await alunoInfo.create({
     nome: nome,
     idade: idade,
   });
 
   console.log(nome, idade);
+
+  // Obtém a lista atualizada de informações dos alunos
   const infoList = await alunoInfo.findAll({
     order: [["id", "ASC"]],
   });
   res.render("home", { info: infoList });
 };
 
+// Adiciona 1 à idade do aluno
 export const addIdade = async (req: Request, res: Response) => {
-  const addAge = await alunoInfo.findByPk(req.params.slug);
+  const aluno = await alunoInfo.findByPk(req.params.slug);
 
-  if (addAge) {
-    addAge.idade += 1;
-    await addAge.save();
+  if (aluno) {
+    aluno.idade += 1;
+    await aluno.save();
   } else {
-    console.log("falha");
+    console.log("Falha ao encontrar aluno");
   }
 
-  //sempre atualiza a page
+  // Obtém a lista atualizada de informações
   const infoList = await alunoInfo.findAll({
     order: [["id", "ASC"]],
   });
   res.render("home", { info: infoList });
 };
 
+// Subtrai 1 da idade
 export const removeIdade = async (req: Request, res: Response) => {
-  const removeAge = await alunoInfo.findByPk(req.params.slug);
+  const aluno = await alunoInfo.findByPk(req.params.slug);
 
-  if (removeAge) {
-    removeAge.idade -= 1;
-    await removeAge.save();
+  if (aluno) {
+    aluno.idade -= 1;
+    await aluno.save();
   } else {
-    console.log("falha");
+    console.log("Falha ao encontrar aluno");
   }
 
-  //sempre atualiza a page
+  // Obtém a lista atualizada de informações dos alunos
   const infoList = await alunoInfo.findAll({
     order: [["id", "ASC"]],
   });
   res.render("home", { info: infoList });
 };
 
+// Seleciona um aluno específico
 export const seleciona = async (req: Request, res: Response) => {
   const nome = req.params.nome;
   const idade = req.params.idade;
 
-  //sempre atualiza a page
   res.render("select", { nome: nome, idade: idade });
 };
 
+// Deleta um aluno
 export const deletado = async (req: Request, res: Response) => {
-  const deleta = await alunoInfo.findByPk(req.params.slug);
+  const aluno = await alunoInfo.findByPk(req.params.slug);
+
   try {
-    if (deleta) {
-      const deletar = await deleta.destroy();
+    if (aluno) {
+      await aluno.destroy();
     } else {
-      console.log("falha");
+      console.log("Falha ao encontrar aluno");
     }
   } catch (error) {
     console.log(error);
   }
 
-  //sempre atualiza a page
+  // Obtém a lista atualizada de informações dos alunos
   const infoList = await alunoInfo.findAll({
     order: [["id", "ASC"]],
   });

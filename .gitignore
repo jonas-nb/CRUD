@@ -1,0 +1,9 @@
+# Ignorar diretórios
+node_modules/
+public/
+
+# Ignorar arquivos
+.vercel/
+
+# Ignorar dotenv
+.dotenv
