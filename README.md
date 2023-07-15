@@ -57,4 +57,6 @@ O CRUD Simples para Fins de Estudo é uma aplicação desenvolvida com o objetiv
 
 Certifique-se de ter todas as dependências e configurações necessárias para garantir o correto funcionamento da aplicação.
 
-Agora você pode explorar o projeto e praticar o CRUD básico, aprimorando seus conhecimentos em desenvolvimento web.
+## Agora você pode explorar o projeto e praticar o CRUD básico, aprimorando seus conhecimentos em desenvolvimento web.
+
+---
